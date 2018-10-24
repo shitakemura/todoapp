@@ -19,6 +19,8 @@
 		188732152180AFA200E97955 /* TodoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188732132180AFA200E97955 /* TodoItemTableViewCell.xib */; };
 		188732182180B16800E97955 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188732172180B16800E97955 /* UITableViewExtensions.swift */; };
 		1887321A2180B19D00E97955 /* NSObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188732192180B19D00E97955 /* NSObjectExtensions.swift */; };
+		1887321E2180B47500E97955 /* AddTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887321C2180B47500E97955 /* AddTodoItemViewController.swift */; };
+		1887321F2180B47500E97955 /* AddTodoItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1887321D2180B47500E97955 /* AddTodoItemViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		188732132180AFA200E97955 /* TodoItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoItemTableViewCell.xib; sourceTree = "<group>"; };
 		188732172180B16800E97955 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
 		188732192180B19D00E97955 /* NSObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtensions.swift; sourceTree = "<group>"; };
+		1887321C2180B47500E97955 /* AddTodoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewController.swift; sourceTree = "<group>"; };
+		1887321D2180B47500E97955 /* AddTodoItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTodoItemViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				1887320D2180AC6700E97955 /* TodoItemList */,
+				1887321B2180B43E00E97955 /* AddTodoItem */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -170,6 +175,15 @@
 				188732172180B16800E97955 /* UITableViewExtensions.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		1887321B2180B43E00E97955 /* AddTodoItem */ = {
+			isa = PBXGroup;
+			children = (
+				1887321D2180B47500E97955 /* AddTodoItemViewController.xib */,
+				1887321C2180B47500E97955 /* AddTodoItemViewController.swift */,
+			);
+			path = AddTodoItem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +295,7 @@
 				188731E62180A9CB00E97955 /* LaunchScreen.storyboard in Resources */,
 				188731E32180A9CB00E97955 /* Assets.xcassets in Resources */,
 				188732112180ACA900E97955 /* TodoItemListViewController.xib in Resources */,
+				1887321F2180B47500E97955 /* AddTodoItemViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +325,7 @@
 				188731DC2180A9CA00E97955 /* AppDelegate.swift in Sources */,
 				188732142180AFA200E97955 /* TodoItemTableViewCell.swift in Sources */,
 				188732182180B16800E97955 /* UITableViewExtensions.swift in Sources */,
+				1887321E2180B47500E97955 /* AddTodoItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

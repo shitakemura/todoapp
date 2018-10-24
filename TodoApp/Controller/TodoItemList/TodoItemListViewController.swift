@@ -35,7 +35,8 @@ extension TodoItemListViewController {
 
 extension TodoItemListViewController {
     @objc private func didTapAddTodo(_sender: UIBarButtonItem) {
-        print("Todo追加")
+        let addTodoItemViewController = AddTodoItemViewController()
+        present(addTodoItemViewController, animated: true, completion: nil)
     }
 }
 
