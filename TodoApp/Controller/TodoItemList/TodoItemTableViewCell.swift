@@ -10,12 +10,19 @@ import UIKit
 
 class TodoItemTableViewCell: UITableViewCell {
 
+    @IBOutlet private weak var titleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }    
+}
+
+extension TodoItemTableViewCell {
+    func bind(todoItem: TodoItem) {
+        titleLabel.text = todoItem.title
+    }
 }
