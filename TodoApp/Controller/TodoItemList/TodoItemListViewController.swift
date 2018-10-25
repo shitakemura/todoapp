@@ -60,7 +60,8 @@ extension TodoItemListViewController {
 
 extension TodoItemListViewController {
     @objc private func didTapAddTodo(_sender: UIBarButtonItem) {
-        let addTodoItemViewController = AddTodoItemViewController()
+        let client = AddTodoItemApiClient()
+        let addTodoItemViewController = AddTodoItemViewController(client: client)
         present(addTodoItemViewController, animated: true, completion: nil)
     }
 }
