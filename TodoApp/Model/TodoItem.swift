@@ -8,6 +8,11 @@
 
 import Foundation
 
-struct TodoItem: Codable {
+class TodoItem: Codable {
+    var id: Int?
     let title: String
+    
+    init(title: String) {
+        self.title = title
+    }
 }

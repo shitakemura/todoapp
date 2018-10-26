@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		180C1D5521833DD500FACD97 /* EditTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C1D5321833DD500FACD97 /* EditTodoItemViewController.swift */; };
 		180C1D5621833DD500FACD97 /* EditTodoItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180C1D5421833DD500FACD97 /* EditTodoItemViewController.xib */; };
+		180C1F7B218346B500FACD97 /* EditTodoItemApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C1F7A218346B500FACD97 /* EditTodoItemApiClient.swift */; };
 		181ABB5E2181E74B0048001C /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB5D2181E74B0048001C /* TodoItem.swift */; };
 		181ABB602181E89C0048001C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB5F2181E89C0048001C /* DataManager.swift */; };
 		181ABB622181E8CB0048001C /* TodoItemListApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB612181E8CB0048001C /* TodoItemListApiClient.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		180C1D5321833DD500FACD97 /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
 		180C1D5421833DD500FACD97 /* EditTodoItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTodoItemViewController.xib; sourceTree = "<group>"; };
+		180C1F7A218346B500FACD97 /* EditTodoItemApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoItemApiClient.swift; sourceTree = "<group>"; };
 		181ABB5D2181E74B0048001C /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		181ABB5F2181E89C0048001C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		181ABB612181E8CB0048001C /* TodoItemListApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemListApiClient.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				181ABB5F2181E89C0048001C /* DataManager.swift */,
 				181ABB612181E8CB0048001C /* TodoItemListApiClient.swift */,
 				181ABB632181F32F0048001C /* AddTodoItemApiClient.swift */,
+				180C1F7A218346B500FACD97 /* EditTodoItemApiClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				188732102180ACA900E97955 /* TodoItemListViewController.swift in Sources */,
 				180C1D5521833DD500FACD97 /* EditTodoItemViewController.swift in Sources */,
 				1887321A2180B19D00E97955 /* NSObjectExtensions.swift in Sources */,
+				180C1F7B218346B500FACD97 /* EditTodoItemApiClient.swift in Sources */,
 				188731DC2180A9CA00E97955 /* AppDelegate.swift in Sources */,
 				188732142180AFA200E97955 /* TodoItemTableViewCell.swift in Sources */,
 				188732182180B16800E97955 /* UITableViewExtensions.swift in Sources */,

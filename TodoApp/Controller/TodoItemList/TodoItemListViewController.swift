@@ -68,8 +68,9 @@ extension TodoItemListViewController {
 
 extension TodoItemListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let client = EditTodoItemApiClient()
         let todoItem = todoItems[indexPath.row]
-        let editTodoItemViewController = EditTodoItemViewController(todoItem: todoItem)
+        let editTodoItemViewController = EditTodoItemViewController(client: client, todoItem: todoItem)
         navigationController?.pushViewController(editTodoItemViewController, animated: true)
     }
 }
@@ -83,6 +84,7 @@ extension TodoItemListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(with: TodoItemTableViewCell.self, for: indexPath) else { return UITableViewCell() }
         
         let todoItem = todoItems[indexPath.row]
+        print("id: \(todoItem.id)  title: \(todoItem.title)")
         cell.bind(todoItem: todoItem)
         return cell
     }

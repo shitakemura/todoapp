@@ -14,9 +14,11 @@ class EditTodoItemViewController: UIViewController {
     @IBOutlet private weak var updateButton: UIButton!
     @IBOutlet private weak var deleteButton: UIButton!
     
+    private let client: EditTodoItemApiClientProtocol
     private let todoItem: TodoItem
     
-    init(todoItem: TodoItem) {
+    init(client: EditTodoItemApiClientProtocol, todoItem: TodoItem) {
+        self.client = client
         self.todoItem = todoItem
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,6 +51,8 @@ extension EditTodoItemViewController {
     }
     
     @objc private func didTapDelete(_ sender: UIButton) {
-        print("didTapDelete")
+        client.delete(todoItem: todoItem) { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 }
