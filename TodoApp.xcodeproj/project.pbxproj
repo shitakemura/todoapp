@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180C1D5521833DD500FACD97 /* EditTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C1D5321833DD500FACD97 /* EditTodoItemViewController.swift */; };
+		180C1D5621833DD500FACD97 /* EditTodoItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180C1D5421833DD500FACD97 /* EditTodoItemViewController.xib */; };
 		181ABB5E2181E74B0048001C /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB5D2181E74B0048001C /* TodoItem.swift */; };
 		181ABB602181E89C0048001C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB5F2181E89C0048001C /* DataManager.swift */; };
 		181ABB622181E8CB0048001C /* TodoItemListApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB612181E8CB0048001C /* TodoItemListApiClient.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180C1D5321833DD500FACD97 /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
+		180C1D5421833DD500FACD97 /* EditTodoItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTodoItemViewController.xib; sourceTree = "<group>"; };
 		181ABB5D2181E74B0048001C /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		181ABB5F2181E89C0048001C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		181ABB612181E8CB0048001C /* TodoItemListApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemListApiClient.swift; sourceTree = "<group>"; };
@@ -96,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180C1D5221833DB500FACD97 /* EditTodoItem */ = {
+			isa = PBXGroup;
+			children = (
+				180C1D5421833DD500FACD97 /* EditTodoItemViewController.xib */,
+				180C1D5321833DD500FACD97 /* EditTodoItemViewController.swift */,
+			);
+			path = EditTodoItem;
+			sourceTree = "<group>";
+		};
 		181ABB5C2181E71C0048001C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +186,7 @@
 			children = (
 				1887320D2180AC6700E97955 /* TodoItemList */,
 				1887321B2180B43E00E97955 /* AddTodoItem */,
+				180C1D5221833DB500FACD97 /* EditTodoItem */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -314,6 +328,7 @@
 				188732152180AFA200E97955 /* TodoItemTableViewCell.xib in Resources */,
 				188731E62180A9CB00E97955 /* LaunchScreen.storyboard in Resources */,
 				188731E32180A9CB00E97955 /* Assets.xcassets in Resources */,
+				180C1D5621833DD500FACD97 /* EditTodoItemViewController.xib in Resources */,
 				188732112180ACA900E97955 /* TodoItemListViewController.xib in Resources */,
 				1887321F2180B47500E97955 /* AddTodoItemViewController.xib in Resources */,
 			);
@@ -344,6 +359,7 @@
 				181ABB602181E89C0048001C /* DataManager.swift in Sources */,
 				181ABB622181E8CB0048001C /* TodoItemListApiClient.swift in Sources */,
 				188732102180ACA900E97955 /* TodoItemListViewController.swift in Sources */,
+				180C1D5521833DD500FACD97 /* EditTodoItemViewController.swift in Sources */,
 				1887321A2180B19D00E97955 /* NSObjectExtensions.swift in Sources */,
 				188731DC2180A9CA00E97955 /* AppDelegate.swift in Sources */,
 				188732142180AFA200E97955 /* TodoItemTableViewCell.swift in Sources */,
@@ -519,6 +535,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E4K33R9CD3;
 				INFOPLIST_FILE = TodoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -537,6 +554,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E4K33R9CD3;
 				INFOPLIST_FILE = TodoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

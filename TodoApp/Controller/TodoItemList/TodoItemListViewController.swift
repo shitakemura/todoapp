@@ -68,7 +68,9 @@ extension TodoItemListViewController {
 
 extension TodoItemListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("TableViewCell選択")
+        let todoItem = todoItems[indexPath.row]
+        let editTodoItemViewController = EditTodoItemViewController(todoItem: todoItem)
+        navigationController?.pushViewController(editTodoItemViewController, animated: true)
     }
 }
 
