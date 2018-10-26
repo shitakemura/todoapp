@@ -9,10 +9,14 @@
 import Foundation
 
 class TodoItem: Codable {
-    var id: Int?
-    let title: String
+    private(set) var id: Int?
+    private(set) var title: String
     
     init(title: String) {
+        self.title = title
+    }
+    
+    func set(title: String) {
         self.title = title
     }
 }

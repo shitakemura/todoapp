@@ -46,9 +46,12 @@ extension AddTodoItemViewController {
     @objc private func didTapAddItem(_ sender: UIButton) {
         guard let title = titleTextField.text else { return }
         let todoItem = TodoItem(title: title)
+        
         client.add(todoItem: todoItem) { [weak self] todoItemList in
             print("todoItemList: \(String(describing: todoItemList))")
-            self?.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self?.dismiss(animated: true, completion: nil)
+            }
         }
     }
 }

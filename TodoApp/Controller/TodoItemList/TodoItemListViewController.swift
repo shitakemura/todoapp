@@ -45,7 +45,7 @@ extension TodoItemListViewController {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 80
+        tableView.rowHeight = 70
         tableView.register(cellType: TodoItemTableViewCell.self)
     }
     

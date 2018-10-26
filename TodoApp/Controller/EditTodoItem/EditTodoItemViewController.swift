@@ -31,12 +31,17 @@ class EditTodoItemViewController: UIViewController {
         super.viewDidLoad()
         setupNavigation()
         setupButton()
+        set(titleText: todoItem.title)
     }
 }
 
 extension EditTodoItemViewController {
     private func setupNavigation() {
         title = "EditTodo"
+    }
+    
+    private func set(titleText: String) {
+        titleTextField.text = titleText
     }
     
     private func setupButton() {
@@ -47,12 +52,21 @@ extension EditTodoItemViewController {
 
 extension EditTodoItemViewController {
     @objc private func didTapUpdate(_ sender: UIButton) {
-        print("didTapUpdate")
+        guard let title = titleTextField.text else { return }
+        todoItem.set(title: title)
+        
+        client.update(todoItem: todoItem) { [weak self] todoListItem in
+            DispatchQueue.main.async {
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     @objc private func didTapDelete(_ sender: UIButton) {
         client.delete(todoItem: todoItem) { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async {
+                self?.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }
