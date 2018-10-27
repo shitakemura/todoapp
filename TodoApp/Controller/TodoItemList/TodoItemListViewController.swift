@@ -12,10 +12,10 @@ class TodoItemListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var addTodoButton: UIButton!
     
-    private let client: TodoItemListApiClientProtocol
+    private let client: TodoAppApiClientProtocol
     private(set) var todoItems: [TodoItem]
     
-    init(client: TodoItemListApiClientProtocol, todoItems: [TodoItem]) {
+    init(client: TodoAppApiClientProtocol, todoItems: [TodoItem]) {
         self.client = client
         self.todoItems = todoItems
         super.init(nibName: nil, bundle: nil)
@@ -40,6 +40,7 @@ class TodoItemListViewController: UIViewController {
 extension TodoItemListViewController {
     private func setupNavigation() {
         title = "Todo一覧"
+        navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "全削除", style: .plain, target: self, action: #selector(didTapClearTodos))
     }
     
@@ -65,11 +66,17 @@ extension TodoItemListViewController {
             self?.tableView.reloadData()
         }
     }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.isEditing = editing
+    }
+    
 }
 
 extension TodoItemListViewController {
     @objc private func didTapAddTodo(_ sender: UIButton) {
-        let client = AddTodoItemApiClient()
+        let client = TodoAppApiClient()
         let addTodoItemViewController = AddTodoItemViewController(client: client)
         present(addTodoItemViewController, animated: true, completion: nil)
     }
@@ -94,7 +101,7 @@ extension TodoItemListViewController {
 
 extension TodoItemListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let client = EditTodoItemApiClient()
+        let client = TodoAppApiClient()
         let todoItem = todoItems[indexPath.row]
         let editTodoItemViewController = EditTodoItemViewController(client: client, todoItem: todoItem)
         navigationController?.pushViewController(editTodoItemViewController, animated: true)
@@ -114,12 +121,22 @@ extension TodoItemListViewController: UITableViewDataSource {
         cell.delegate = self
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle != .delete { return }
+        client.delete(todoItem: todoItems[indexPath.row]) { [weak self] in
+            self?.fetchTodoItems()
+        }
+    }
 }
-
 
 extension TodoItemListViewController: TodoItemTableViewCellDelegate {
     func todoItemTableViewCell(_ todoItemTableViewCell: TodoItemTableViewCell, didChangeTodoItem: TodoItem) {
-        client.update(todoItem: didChangeTodoItem) { [weak self] (todoItemList) in
+        client.update(todoItem: didChangeTodoItem) { [weak self] _ in
             self?.fetchTodoItems()
         }
     }

@@ -14,9 +14,9 @@ class AddTodoItemViewController: UIViewController {
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var addTodoItemButton: UIButton!
     
-    private let client: AddTodoItemApiClientProtocol
+    private let client: TodoAppApiClientProtocol
 
-    init(client: AddTodoItemApiClientProtocol) {
+    init(client: TodoAppApiClientProtocol) {
         self.client = client
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,10 +48,7 @@ extension AddTodoItemViewController {
         let todoItem = TodoItem(title: title)
         
         client.add(todoItem: todoItem) { [weak self] todoItemList in
-            print("todoItemList: \(String(describing: todoItemList))")
-            DispatchQueue.main.async {
-                self?.dismiss(animated: true, completion: nil)
-            }
+            self?.dismiss(animated: true, completion: nil)
         }
     }
 }

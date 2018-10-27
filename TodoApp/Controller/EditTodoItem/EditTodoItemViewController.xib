@@ -12,7 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTodoItemViewController" customModule="TodoApp" customModuleProvider="target">
             <connections>
-                <outlet property="deleteButton" destination="7Jp-ID-RRp" id="9ng-Ke-ffn"/>
                 <outlet property="titleTextField" destination="3dl-Wr-giI" id="B0a-39-Ldu"/>
                 <outlet property="updateButton" destination="Kqw-8s-AaR" id="g1b-mB-03T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,24 +23,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-8s-AaR">
-                    <rect key="frame" x="60" y="477" width="255" height="50"/>
+                    <rect key="frame" x="60" y="270" width="255" height="50"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="DhF-5R-NiX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <state key="normal" title="更新する">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jp-ID-RRp">
-                    <rect key="frame" x="60" y="567" width="255" height="50"/>
-                    <color key="backgroundColor" red="0.9184647798538208" green="0.55451139765283841" blue="0.73117427469446772" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="smx-R9-X2p"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <state key="normal" title="削除する">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
@@ -65,13 +53,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="7Jp-ID-RRp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="CD5-Pd-ilX"/>
                 <constraint firstItem="jdC-CZ-0af" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="DU4-WL-0vQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jdC-CZ-0af" secondAttribute="trailing" constant="60" id="NwK-yc-egE"/>
-                <constraint firstItem="7Jp-ID-RRp" firstAttribute="top" secondItem="Kqw-8s-AaR" secondAttribute="bottom" constant="40" id="RWq-0i-wkG"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7Jp-ID-RRp" secondAttribute="bottom" constant="50" id="S83-lI-26F"/>
+                <constraint firstItem="Kqw-8s-AaR" firstAttribute="top" secondItem="jdC-CZ-0af" secondAttribute="bottom" constant="100" id="RNi-GV-Rbz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Kqw-8s-AaR" secondAttribute="trailing" constant="60" id="lC6-uB-qqH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7Jp-ID-RRp" secondAttribute="trailing" constant="60" id="o7y-vL-tPE"/>
                 <constraint firstItem="Kqw-8s-AaR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="rGR-d9-aX6"/>
                 <constraint firstItem="jdC-CZ-0af" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="ssR-8J-oXt"/>
             </constraints>

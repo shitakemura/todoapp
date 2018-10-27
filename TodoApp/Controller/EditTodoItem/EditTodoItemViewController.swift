@@ -12,12 +12,11 @@ class EditTodoItemViewController: UIViewController {
 
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var updateButton: UIButton!
-    @IBOutlet private weak var deleteButton: UIButton!
     
-    private let client: EditTodoItemApiClientProtocol
+    private let client: TodoAppApiClientProtocol
     private let todoItem: TodoItem
     
-    init(client: EditTodoItemApiClientProtocol, todoItem: TodoItem) {
+    init(client: TodoAppApiClientProtocol, todoItem: TodoItem) {
         self.client = client
         self.todoItem = todoItem
         super.init(nibName: nil, bundle: nil)
@@ -46,7 +45,6 @@ extension EditTodoItemViewController {
     
     private func setupButton() {
         updateButton.addTarget(self, action: #selector(didTapUpdate), for: .touchUpInside)
-        deleteButton.addTarget(self, action: #selector(didTapDelete), for: .touchUpInside)
     }
 }
 
@@ -56,17 +54,7 @@ extension EditTodoItemViewController {
         todoItem.set(title: title)
         
         client.update(todoItem: todoItem) { [weak self] todoListItem in
-            DispatchQueue.main.async {
-                self?.navigationController?.popViewController(animated: true)
-            }
-        }
-    }
-    
-    @objc private func didTapDelete(_ sender: UIButton) {
-        client.delete(todoItem: todoItem) { [weak self] in
-            DispatchQueue.main.async {
-                self?.navigationController?.popViewController(animated: true)
-            }
+            self?.navigationController?.popViewController(animated: true)
         }
     }
 }
