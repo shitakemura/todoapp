@@ -41,7 +41,7 @@ class TodoItemListViewController: UIViewController {
 extension TodoItemListViewController {
     private func setupNavigation() {
         title = "TodoI一覧"
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(didTapAddTodo))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "全削除", style: .plain, target: self, action: #selector(didTapDeleteAllTodos))
     }
     
     private func setupTableView() {
@@ -69,10 +69,14 @@ extension TodoItemListViewController {
 }
 
 extension TodoItemListViewController {
-    @objc private func didTapAddTodo(_sender: UIButton) {
+    @objc private func didTapAddTodo(_ sender: UIButton) {
         let client = AddTodoItemApiClient()
         let addTodoItemViewController = AddTodoItemViewController(client: client)
         present(addTodoItemViewController, animated: true, completion: nil)
+    }
+    
+    @objc private func didTapDeleteAllTodos(_ sender: UIButton) {
+        print("Delete All Todos")
     }
 }
 
