@@ -10,6 +10,7 @@ import Foundation
 
 protocol TodoItemListApiClientProtocol {
     func fetch(completion: @escaping (([TodoItem]?) -> Void))
+    func clear(completion: @escaping (() -> Void))
 }
 
 struct TodoItemListApiClient: TodoItemListApiClientProtocol {
@@ -22,6 +23,26 @@ struct TodoItemListApiClient: TodoItemListApiClientProtocol {
             let todoItemList = try? JSONDecoder().decode([TodoItem].self, from: data)
             DispatchQueue.main.async {
                 completion(todoItemList)
+            }
+        }.resume()
+    }
+    
+    func clear(completion: @escaping (() -> Void)) {
+        guard let url = URL(string: "http://localhost:8080/todos") else { return }
+        print("url: \(url)")
+        
+        let urlRequest: URLRequest = {
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            return request
+        }()
+        
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            guard let response = response else { return }
+            print("response: \(response)")
+            
+            DispatchQueue.main.async {
+                completion()
             }
         }.resume()
     }

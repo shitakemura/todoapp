@@ -40,8 +40,8 @@ class TodoItemListViewController: UIViewController {
 
 extension TodoItemListViewController {
     private func setupNavigation() {
-        title = "TodoI一覧"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "全削除", style: .plain, target: self, action: #selector(didTapDeleteAllTodos))
+        title = "Todo一覧"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "全削除", style: .plain, target: self, action: #selector(didTapClearTodos))
     }
     
     private func setupTableView() {
@@ -75,8 +75,21 @@ extension TodoItemListViewController {
         present(addTodoItemViewController, animated: true, completion: nil)
     }
     
-    @objc private func didTapDeleteAllTodos(_ sender: UIButton) {
-        print("Delete All Todos")
+    @objc private func didTapClearTodos(_ sender: UIButton) {
+        if todoItems.isEmpty { return }
+        let alertController: UIAlertController = {
+            let alertController = UIAlertController(title: "全てのTodoを削除します", message: "よろしいですか？", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                self.client.clear {
+                    self.fetchTodoItems()
+                }
+            }
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            return alertController
+        }()
+        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -98,7 +111,6 @@ extension TodoItemListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(with: TodoItemTableViewCell.self, for: indexPath) else { return UITableViewCell() }
         
         let todoItem = todoItems[indexPath.row]
-        print("id: \(todoItem.id)  title: \(todoItem.title)")
         cell.bind(todoItem: todoItem)
         return cell
     }
