@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodoItemListViewController" customModule="TodoApp" customModuleProvider="target">
             <connections>
+                <outlet property="addTodoButton" destination="ZZX-Py-eYl" id="oIL-m6-aWQ"/>
                 <outlet property="tableView" destination="ozf-Ev-pHl" id="VTE-dy-2Am"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,9 +26,21 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZX-Py-eYl">
+                    <rect key="frame" x="150" y="542" width="75" height="75"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="4Wn-Vw-siG"/>
+                        <constraint firstAttribute="width" constant="75" id="Rda-X7-AeZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
+                    <state key="normal" title="＋"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ZZX-Py-eYl" secondAttribute="bottom" constant="50" id="7mS-Dx-zGf"/>
+                <constraint firstItem="ZZX-Py-eYl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Dsa-u4-3m6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ozf-Ev-pHl" secondAttribute="bottom" id="ZoQ-Gg-ZtA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ozf-Ev-pHl" secondAttribute="trailing" id="a7R-V7-lcP"/>
                 <constraint firstItem="ozf-Ev-pHl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bp1-7V-LW6"/>

@@ -11,6 +11,7 @@ import UIKit
 class TodoItemListViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var addTodoButton: UIButton!
     
     private let client: TodoItemListApiClientProtocol
     private(set) var todoItems: [TodoItem]
@@ -29,6 +30,7 @@ class TodoItemListViewController: UIViewController {
         super.viewDidLoad()
         setupNavigation()
         setupTableView()
+        setupButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +41,7 @@ class TodoItemListViewController: UIViewController {
 extension TodoItemListViewController {
     private func setupNavigation() {
         title = "TodoI一覧"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(didTapAddTodo))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(didTapAddTodo))
     }
     
     private func setupTableView() {
@@ -47,6 +49,14 @@ extension TodoItemListViewController {
         tableView.dataSource = self
         tableView.rowHeight = 70
         tableView.register(cellType: TodoItemTableViewCell.self)
+    }
+    
+    private func setupButton() {
+        addTodoButton.layer.borderWidth = 1.0
+        addTodoButton.layer.borderColor = UIColor.black.cgColor
+        addTodoButton.layer.masksToBounds = true
+        addTodoButton.layer.cornerRadius = addTodoButton.frame.width * 0.5
+        addTodoButton.addTarget(self, action: #selector(didTapAddTodo), for: .touchUpInside)
     }
     
     private func fetchTodoItems() {
@@ -59,7 +69,7 @@ extension TodoItemListViewController {
 }
 
 extension TodoItemListViewController {
-    @objc private func didTapAddTodo(_sender: UIBarButtonItem) {
+    @objc private func didTapAddTodo(_sender: UIButton) {
         let client = AddTodoItemApiClient()
         let addTodoItemViewController = AddTodoItemViewController(client: client)
         present(addTodoItemViewController, animated: true, completion: nil)
