@@ -9,7 +9,6 @@
 import UIKit
 
 class TodoItemListViewController: UIViewController {
-
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var addTodoButton: UIButton!
     
@@ -112,6 +111,16 @@ extension TodoItemListViewController: UITableViewDataSource {
         
         let todoItem = todoItems[indexPath.row]
         cell.bind(todoItem: todoItem)
+        cell.delegate = self
         return cell
+    }
+}
+
+
+extension TodoItemListViewController: TodoItemTableViewCellDelegate {
+    func todoItemTableViewCell(_ todoItemTableViewCell: TodoItemTableViewCell, didChangeTodoItem: TodoItem) {
+        client.update(todoItem: didChangeTodoItem) { [weak self] (todoItemList) in
+            self?.fetchTodoItems()
+        }
     }
 }
