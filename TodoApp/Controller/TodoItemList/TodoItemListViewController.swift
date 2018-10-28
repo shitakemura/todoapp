@@ -86,7 +86,12 @@ extension TodoItemListViewController {
 extension TodoItemListViewController {
     @objc private func didTapAddTodo(_ sender: UIButton) {
         let addTodoItemViewController = AddTodoItemViewController(apiClient: apiClient)
-        present(addTodoItemViewController, animated: true, completion: nil)
+        present(addTodoItemViewController, animated: true) {
+            // tableViewが編集モードになっている場合は、画面遷移した後に通常モードに戻しておく
+            if self.tableView.isEditing {
+                self.setEditing(false, animated: false)
+            }
+        }
     }
     
     @objc private func didTapClearTodos(_ sender: UIButton) {
