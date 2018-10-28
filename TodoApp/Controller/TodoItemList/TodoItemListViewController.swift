@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoItemListViewController: UIViewController {
+final class TodoItemListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var addTodoButton: UIButton!
     
@@ -35,8 +35,14 @@ class TodoItemListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         fetchTodoItems()
     }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.isEditing = editing
+    }
 }
 
+// MARK: - Private method
 extension TodoItemListViewController {
     private func setupNavigation() {
         title = "Todo一覧"
@@ -60,11 +66,12 @@ extension TodoItemListViewController {
     }
     
     private func fetchTodoItems() {
+        // 全TodoItem取得リクエスト送信
         let request = TodoAppApi.fetchTodoItems()
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
-                print("TodoItems一覧取得： 成功")
+                print("全TodoItem取得処理： 成功")
                 self.todoItems = response
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -76,13 +83,9 @@ extension TodoItemListViewController {
             }
         }
     }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        tableView.isEditing = editing
-    }
 }
 
+// MARK: - Action method
 extension TodoItemListViewController {
     @objc private func didTapAddTodo(_ sender: UIButton) {
         let addTodoItemViewController = AddTodoItemViewController(apiClient: apiClient)
@@ -97,7 +100,7 @@ extension TodoItemListViewController {
     @objc private func didTapClearTodos(_ sender: UIButton) {
         if todoItems.isEmpty { return }
         
-        // アラートOKボタン押下時のアクション
+        // 全削除確認アラートOK押下時: 全TodoItem削除リクエスト送信
         let clearTodoItems: ((UIAlertAction) -> Void)? = { _ in
             let request = TodoAppApi.clearTodoItems()
             self.apiClient.send(request: request) { result in
@@ -125,6 +128,7 @@ extension TodoItemListViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension TodoItemListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todoItem = todoItems[indexPath.row]
@@ -133,6 +137,7 @@ extension TodoItemListViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension TodoItemListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoItems.count
@@ -154,6 +159,7 @@ extension TodoItemListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle != .delete { return }
         
+        // 編集モードで削除ボタン押下時: TodoItem削除リクエスト送信
         let request = TodoAppApi.deleteTodoItem(todoItem: todoItems[indexPath.row])
         apiClient.send(request: request) { result in
             switch result {
@@ -171,7 +177,9 @@ extension TodoItemListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - TodoItemTableViewCellDelegate
 extension TodoItemListViewController: TodoItemTableViewCellDelegate {
+    // TableViewCell.todoItemが変更時: TodoItem更新リクエスト送信
     func todoItemTableViewCell(_ todoItemTableViewCell: TodoItemTableViewCell, didChangeTodoItem: TodoItem) {
         let request = TodoAppApi.updateTodoItem(todoItem: didChangeTodoItem)
         apiClient.send(request: request) { result in

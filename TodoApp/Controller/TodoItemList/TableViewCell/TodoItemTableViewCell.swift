@@ -12,7 +12,7 @@ protocol TodoItemTableViewCellDelegate: class {
     func todoItemTableViewCell(_ todoItemTableViewCell: TodoItemTableViewCell, didChangeTodoItem: TodoItem)
 }
 
-class TodoItemTableViewCell: UITableViewCell {
+final class TodoItemTableViewCell: UITableViewCell {
     @IBOutlet private weak var checkmarkView: CheckmarkView!
     @IBOutlet private weak var titleLabel: UILabel!
     
@@ -29,6 +29,7 @@ class TodoItemTableViewCell: UITableViewCell {
     }    
 }
 
+// MARK: - Internal function
 extension TodoItemTableViewCell {
     func bind(todoItem: TodoItem) {
         self.todoItem = todoItem
@@ -38,7 +39,9 @@ extension TodoItemTableViewCell {
     }
 }
 
+// MARK: - CheckmarkViewDelegate
 extension TodoItemTableViewCell: CheckmarkViewDelegate {
+    // CheckmarkViewのチェックマーク更新: todoItemを更新し、TodoItemListViewControllerに通知
     func checkmarkView(_ checkmarkView: CheckmarkView, didChecked: Bool) {
         todoItem?.set(isDone: didChecked)
         guard let todoItem = todoItem else { return }

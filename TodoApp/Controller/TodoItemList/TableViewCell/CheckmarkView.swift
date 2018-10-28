@@ -12,7 +12,7 @@ protocol CheckmarkViewDelegate: class {
     func checkmarkView(_ checkmarkView: CheckmarkView, didChecked: Bool)
 }
 
-class CheckmarkView: UIView {
+final class CheckmarkView: UIView {
     @IBOutlet private weak var checkmarkLabel: UILabel!
     
     private(set) var isChecked = false
@@ -35,13 +35,19 @@ class CheckmarkView: UIView {
         view.frame = self.bounds
         self.addSubview(view)
     }
-    
+}
+
+// MARK: - Private method
+extension CheckmarkView {
     private func setupLabel() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCheckmark))
         checkmarkLabel.isUserInteractionEnabled = true
         checkmarkLabel.addGestureRecognizer(tapGestureRecognizer)
     }
-    
+}
+
+// MARK: - Action method
+extension CheckmarkView {
     @objc private func didTapCheckmark(_ sender: UITapGestureRecognizer) {
         isChecked.toggle()
         set(checkmark: isChecked)
@@ -49,6 +55,7 @@ class CheckmarkView: UIView {
     }
 }
 
+// MARK: - Internal method
 extension CheckmarkView {    
     func set(checkmark isChecked: Bool) {
         self.isChecked = isChecked

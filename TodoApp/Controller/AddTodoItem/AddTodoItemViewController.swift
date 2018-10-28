@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTodoItemViewController: UIViewController {
+final class AddTodoItemViewController: UIViewController {
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var addTodoItemButton: UIButton!
@@ -30,6 +30,7 @@ class AddTodoItemViewController: UIViewController {
     }
 }
 
+// MARK: - Private method
 extension AddTodoItemViewController {
     private func setupButton() {
         closeButton.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
@@ -37,6 +38,7 @@ extension AddTodoItemViewController {
     }
 }
 
+// MARK: - Action method
 extension AddTodoItemViewController {
     @objc private func didTapClose(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -46,11 +48,12 @@ extension AddTodoItemViewController {
         guard let title = titleTextField.text else { return }
         let todoItem = TodoItem(title: title)
         
+        // TodoItem追加リクエスト送信
         let request = TodoAppApi.addTodoItem(todoItem: todoItem)
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
-                print("追加成功 response: \(response)")
+                print("TodoItem追加成功 response: \(response)")
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }

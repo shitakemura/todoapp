@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditTodoItemViewController: UIViewController {
+final class EditTodoItemViewController: UIViewController {
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var updateButton: UIButton!
     
@@ -33,6 +33,7 @@ class EditTodoItemViewController: UIViewController {
     }
 }
 
+// MARK: - Private method
 extension EditTodoItemViewController {
     private func setupNavigation() {
         title = "EditTodo"
@@ -47,11 +48,13 @@ extension EditTodoItemViewController {
     }
 }
 
+// MARK: - Action method
 extension EditTodoItemViewController {
     @objc private func didTapUpdate(_ sender: UIButton) {
         guard let title = titleTextField.text else { return }
         todoItem.set(title: title)
         
+        // TodoItem更新リクエスト送信
         let request = TodoAppApi.updateTodoItem(todoItem: todoItem)
         apiClient.send(request: request) { result in
             switch result {

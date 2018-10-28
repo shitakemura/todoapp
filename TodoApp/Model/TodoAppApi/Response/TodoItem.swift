@@ -6,9 +6,7 @@
 //  Copyright © 2018 Shintaro Takemura. All rights reserved.
 //
 
-import Foundation
-
-class TodoItem: Codable {
+final class TodoItem: Codable {
     private(set) var id: Int?
     private(set) var title: String
     private(set) var isDone = false

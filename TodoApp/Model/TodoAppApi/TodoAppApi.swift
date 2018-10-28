@@ -9,7 +9,6 @@
 import Foundation
 
 final class TodoAppApi {
-    
     // Todo一覧取得
     struct fetchTodoItems: TodoAppApiRequest {
         typealias Response = [TodoItem]

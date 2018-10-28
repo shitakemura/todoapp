@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoAppApiClient {
+final class TodoAppApiClient {
     private let session: URLSession = {
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)

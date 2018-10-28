@@ -6,8 +6,4 @@
 //  Copyright © 2018 Shintaro Takemura. All rights reserved.
 //
 
-import Foundation
-
-struct EmptyData: Decodable {
-    
-}
+struct EmptyData: Decodable {}
