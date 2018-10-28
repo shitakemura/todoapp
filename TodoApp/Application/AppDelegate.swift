@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
-        let client = TodoAppApiClient()
-        let topViewController = TodoItemListViewController(client: client, todoItems: [])
+        let apiClient = TodoAppApiClient()
+        let topViewController = TodoItemListViewController(apiClient: apiClient, todoItems: [])
         let navigationController = UINavigationController(rootViewController: topViewController)
         
         window = UIWindow(frame: UIScreen.main.bounds)

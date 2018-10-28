@@ -9,15 +9,14 @@
 import UIKit
 
 class EditTodoItemViewController: UIViewController {
-
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var updateButton: UIButton!
     
-    private let client: TodoAppApiClientProtocol
+    private let apiClient: TodoAppApiClient
     private let todoItem: TodoItem
     
-    init(client: TodoAppApiClientProtocol, todoItem: TodoItem) {
-        self.client = client
+    init(apiClient: TodoAppApiClient, todoItem: TodoItem) {
+        self.apiClient = apiClient
         self.todoItem = todoItem
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,8 +52,18 @@ extension EditTodoItemViewController {
         guard let title = titleTextField.text else { return }
         todoItem.set(title: title)
         
-        client.update(todoItem: todoItem) { [weak self] todoListItem in
-            self?.navigationController?.popViewController(animated: true)
+        let request = TodoAppApi.updateTodoItem(todoItem: todoItem)
+        apiClient.send(request: request) { result in
+            switch result {
+            case let .success(response):
+                print("更新成功 response: \(response)")
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
+            case let .failure(error):
+                print("エラーが発生しました: \(error)") // エラー詳細を出力
+            }
         }
     }
 }
