@@ -6,7 +6,7 @@
 //  Copyright © 2018 Shintaro Takemura. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TodoAppApiClient {
     private let session: URLSession = {
@@ -41,5 +41,10 @@ class TodoAppApiClient {
             }
         }
         task.resume()
+    }
+    
+    func errorAlert(with title: String) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert).addAction(title: "OK", style: .default, handler: nil)
+        return alertController
     }
 }

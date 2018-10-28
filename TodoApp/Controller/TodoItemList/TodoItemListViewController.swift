@@ -64,13 +64,15 @@ extension TodoItemListViewController {
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
-                print("TodoItems一覧取得成功")
+                print("TodoItems一覧取得： 成功")
                 self.todoItems = response
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             case let .failure(error):
-                print("エラーが発生しました: \(error)") // エラー詳細を出力
+                DispatchQueue.main.async {
+                    self.present(self.apiClient.errorAlert(with: error.message), animated: true, completion: nil)
+                }
             }
         }
     }
@@ -90,27 +92,28 @@ extension TodoItemListViewController {
     @objc private func didTapClearTodos(_ sender: UIButton) {
         if todoItems.isEmpty { return }
         
-        let alertController: UIAlertController = {
-            let alertController = UIAlertController(title: "全てのTodoを削除します", message: "よろしいですか？", preferredStyle: .alert)
-
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                let request = TodoAppApi.clearTodoItems()
-                self.apiClient.send(request: request) { result in
-                    switch result {
-                    case let .success(response):
-                        print("TodoItems全削除成功 response: \(response)")
-                        DispatchQueue.main.async {
-                            self.fetchTodoItems()
-                        }
-                    case let .failure(error):
-                        print("エラーが発生しました: \(error)") // エラー詳細を出力
+        // アラートOKボタン押下時のアクション
+        let clearTodoItems: ((UIAlertAction) -> Void)? = { _ in
+            let request = TodoAppApi.clearTodoItems()
+            self.apiClient.send(request: request) { result in
+                switch result {
+                case let .success(response):
+                    print("TodoItems全削除成功 response: \(response)")
+                    DispatchQueue.main.async {
+                        self.fetchTodoItems()
+                    }
+                case let .failure(error):
+                    DispatchQueue.main.async {
+                        self.present(self.apiClient.errorAlert(with: error.message), animated: true, completion: nil)
                     }
                 }
             }
-            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-            
-            alertController.addAction(okAction)
-            alertController.addAction(cancelAction)
+        }
+
+        let alertController: UIAlertController = {
+            let alertController = UIAlertController(title: "全てのTodoを削除します", message: "よろしいですか？", preferredStyle: .alert)
+                .addAction(title: "OK", style: .default, handler: clearTodoItems)
+                .addAction(title: "キャンセル", style: .cancel, handler: nil)
             return alertController
         }()
         present(alertController, animated: true, completion: nil)
@@ -155,7 +158,9 @@ extension TodoItemListViewController: UITableViewDataSource {
                     self.fetchTodoItems()
                 }
             case let .failure(error):
-                print("エラーが発生しました: \(error)") // エラー詳細を出力
+                DispatchQueue.main.async {
+                    self.present(self.apiClient.errorAlert(with: error.message), animated: true, completion: nil)
+                }
             }
         }
     }
@@ -172,7 +177,9 @@ extension TodoItemListViewController: TodoItemTableViewCellDelegate {
                     self.fetchTodoItems()
                 }
             case let .failure(error):
-                print("エラーが発生しました: \(error)") // エラー詳細を出力
+                DispatchQueue.main.async {
+                    self.present(self.apiClient.errorAlert(with: error.message), animated: true, completion: nil)
+                }
             }
         }
     }

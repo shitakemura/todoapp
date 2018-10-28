@@ -10,4 +10,15 @@ enum TodoAppApiClientError : Error {
     case connectionError(Error)         // 通信失敗
     case responseParseError(Error)      // レスポンスの解釈に失敗
     case apiError(TodoAppApiError)      // APIからエラーレスポンスを受け取った
+    
+    var message: String {
+        switch self {
+        case .connectionError:
+            return "通信エラーです。"
+        case .responseParseError:
+            return "レスポンスデータが不正です"
+        case .apiError:
+            return "エラーレスポンスを受け取りました"
+        }
+    }
 }

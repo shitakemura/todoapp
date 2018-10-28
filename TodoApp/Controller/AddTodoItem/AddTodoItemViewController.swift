@@ -56,7 +56,9 @@ extension AddTodoItemViewController {
                 }
                 
             case let .failure(error):
-                print("エラーが発生しました: \(error)") // エラー詳細を出力
+                DispatchQueue.main.async {
+                    self.present(self.apiClient.errorAlert(with: error.message), animated: true, completion: nil)
+                }
             }
         }
     }
