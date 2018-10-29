@@ -1,5 +1,5 @@
 //
-//  TodoItemListViewController.swift
+//  TodoListViewController.swift
 //  TodoApp
 //
 //  Created by Shintaro Takemura on 2018/10/24.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-final class TodoItemListViewController: UIViewController {
+final class TodoListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var addTodoButton: UIButton!
     
     private let apiClient: TodoAppApiClient
-    private(set) var todoItems: [TodoItem]
+    private(set) var todos: [Todo]
     
-    init(apiClient: TodoAppApiClient, todoItems: [TodoItem]) {
+    init(apiClient: TodoAppApiClient, todos: [Todo]) {
         self.apiClient = apiClient
-        self.todoItems = todoItems
+        self.todos = todos
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,7 +33,7 @@ final class TodoItemListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchTodoItems()
+        fetchTodos()
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -43,7 +43,7 @@ final class TodoItemListViewController: UIViewController {
 }
 
 // MARK: - Private method
-extension TodoItemListViewController {
+extension TodoListViewController {
     private func setupNavigation() {
         title = "Todo一覧"
         navigationItem.leftBarButtonItem = editButtonItem
@@ -54,7 +54,7 @@ extension TodoItemListViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 70
-        tableView.register(cellType: TodoItemTableViewCell.self)
+        tableView.register(cellType: TodoTableViewCell.self)
     }
     
     private func setupButton() {
@@ -65,14 +65,14 @@ extension TodoItemListViewController {
         addTodoButton.addTarget(self, action: #selector(didTapAddTodo), for: .touchUpInside)
     }
     
-    private func fetchTodoItems() {
-        // 全TodoItem取得リクエスト送信
-        let request = TodoAppApi.fetchTodoItems()
+    private func fetchTodos() {
+        // 全Todo取得リクエスト送信
+        let request = TodoAppApi.fetchTodos()
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
-                print("全TodoItem取得処理： 成功")
-                self.todoItems = response
+                print("全Todo取得処理： 成功")
+                self.todos = response
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -86,10 +86,10 @@ extension TodoItemListViewController {
 }
 
 // MARK: - Action method
-extension TodoItemListViewController {
+extension TodoListViewController {
     @objc private func didTapAddTodo(_ sender: UIButton) {
-        let addTodoItemViewController = AddTodoItemViewController(apiClient: apiClient)
-        present(addTodoItemViewController, animated: true) {
+        let addTodoViewController = AddTodoViewController(apiClient: apiClient)
+        present(addTodoViewController, animated: true) {
             // tableViewが編集モードになっている場合は、画面遷移した後に通常モードに戻しておく
             if self.tableView.isEditing {
                 self.setEditing(false, animated: false)
@@ -98,17 +98,17 @@ extension TodoItemListViewController {
     }
     
     @objc private func didTapClearTodos(_ sender: UIButton) {
-        if todoItems.isEmpty { return }
+        if todos.isEmpty { return }
         
-        // 全削除確認アラートOK押下時: 全TodoItem削除リクエスト送信
-        let clearTodoItems: ((UIAlertAction) -> Void)? = { _ in
-            let request = TodoAppApi.clearTodoItems()
+        // Todo削除確認アラートOK押下時: 全Todo削除リクエスト送信
+        let clearTodos: ((UIAlertAction) -> Void)? = { _ in
+            let request = TodoAppApi.clearTodos()
             self.apiClient.send(request: request) { result in
                 switch result {
                 case let .success(response):
-                    print("TodoItems全削除成功 response: \(response)")
+                    print("全Todo削除成功 response: \(response)")
                     DispatchQueue.main.async {
-                        self.fetchTodoItems()
+                        self.fetchTodos()
                     }
                 case let .failure(error):
                     DispatchQueue.main.async {
@@ -120,7 +120,7 @@ extension TodoItemListViewController {
 
         let alertController: UIAlertController = {
             let alertController = UIAlertController(title: "全てのTodoを削除します", message: "よろしいですか？", preferredStyle: .alert)
-                .addAction(title: "OK", style: .default, handler: clearTodoItems)
+                .addAction(title: "OK", style: .default, handler: clearTodos)
                 .addAction(title: "キャンセル", style: .cancel, handler: nil)
             return alertController
         }()
@@ -129,25 +129,25 @@ extension TodoItemListViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension TodoItemListViewController: UITableViewDelegate {
+extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let todoItem = todoItems[indexPath.row]
-        let editTodoItemViewController = EditTodoItemViewController(apiClient: apiClient, todoItem: todoItem)
-        navigationController?.pushViewController(editTodoItemViewController, animated: true)
+        let todo = todos[indexPath.row]
+        let editTodoViewController = EditTodoViewController(apiClient: apiClient, todo: todo)
+        navigationController?.pushViewController(editTodoViewController, animated: true)
     }
 }
 
 // MARK: - UITableViewDataSource
-extension TodoItemListViewController: UITableViewDataSource {
+extension TodoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoItems.count
+        return todos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(with: TodoItemTableViewCell.self, for: indexPath) else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(with: TodoTableViewCell.self, for: indexPath) else { return UITableViewCell() }
         
-        let todoItem = todoItems[indexPath.row]
-        cell.bind(todoItem: todoItem)
+        let todo = todos[indexPath.row]
+        cell.bind(todo: todo)
         cell.delegate = self
         return cell
     }
@@ -159,14 +159,14 @@ extension TodoItemListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle != .delete { return }
         
-        // 編集モードで削除ボタン押下時: TodoItem削除リクエスト送信
-        let request = TodoAppApi.deleteTodoItem(todoItem: todoItems[indexPath.row])
+        // 編集モードで削除ボタン押下時: Todo削除リクエスト送信
+        let request = TodoAppApi.deleteTodo(todo: todos[indexPath.row])
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
-                print("TodoItem削除成功 response: \(response)")
+                print("Todo削除成功 response: \(response)")
                 DispatchQueue.main.async {
-                    self.fetchTodoItems()
+                    self.fetchTodos()
                 }
             case let .failure(error):
                 DispatchQueue.main.async {
@@ -177,17 +177,17 @@ extension TodoItemListViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - TodoItemTableViewCellDelegate
-extension TodoItemListViewController: TodoItemTableViewCellDelegate {
-    // TableViewCell.todoItemが変更時: TodoItem更新リクエスト送信
-    func todoItemTableViewCell(_ todoItemTableViewCell: TodoItemTableViewCell, didChangeTodoItem: TodoItem) {
-        let request = TodoAppApi.updateTodoItem(todoItem: didChangeTodoItem)
+// MARK: - TodoTableViewCellDelegate
+extension TodoListViewController: TodoTableViewCellDelegate {
+    // TableViewCell.todo変更時: Todo更新リクエスト送信
+    func todoTableViewCell(_ todoTableViewCell: TodoTableViewCell, didChangeTodo: Todo) {
+        let request = TodoAppApi.updateTodo(todo: didChangeTodo)
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
-                print("TodoItem更新成功 response: \(response)")
+                print("Todo更新成功 response: \(response)")
                 DispatchQueue.main.async {
-                    self.fetchTodoItems()
+                    self.fetchTodos()
                 }
             case let .failure(error):
                 DispatchQueue.main.async {

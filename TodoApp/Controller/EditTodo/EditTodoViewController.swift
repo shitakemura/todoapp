@@ -1,5 +1,5 @@
 //
-//  EditTodoItemViewController.swift
+//  EditTodoViewController.swift
 //  TodoApp
 //
 //  Created by Shintaro Takemura on 2018/10/26.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-final class EditTodoItemViewController: UIViewController {
+final class EditTodoViewController: UIViewController {
     @IBOutlet private weak var titleTextField: UITextField!
-    @IBOutlet private weak var updateButton: UIButton!
+    @IBOutlet private weak var updateTodoButton: UIButton!
     
     private let apiClient: TodoAppApiClient
-    private let todoItem: TodoItem
+    private let todo: Todo
     
-    init(apiClient: TodoAppApiClient, todoItem: TodoItem) {
+    init(apiClient: TodoAppApiClient, todo: Todo) {
         self.apiClient = apiClient
-        self.todoItem = todoItem
+        self.todo = todo
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,12 +29,12 @@ final class EditTodoItemViewController: UIViewController {
         super.viewDidLoad()
         setupNavigation()
         setupButton()
-        set(titleText: todoItem.title)
+        set(titleText: todo.title)
     }
 }
 
 // MARK: - Private method
-extension EditTodoItemViewController {
+extension EditTodoViewController {
     private func setupNavigation() {
         title = "EditTodo"
     }
@@ -44,18 +44,18 @@ extension EditTodoItemViewController {
     }
     
     private func setupButton() {
-        updateButton.addTarget(self, action: #selector(didTapUpdate), for: .touchUpInside)
+        updateTodoButton.addTarget(self, action: #selector(didTapUpdateTodo), for: .touchUpInside)
     }
 }
 
 // MARK: - Action method
-extension EditTodoItemViewController {
-    @objc private func didTapUpdate(_ sender: UIButton) {
+extension EditTodoViewController {
+    @objc private func didTapUpdateTodo(_ sender: UIButton) {
         guard let title = titleTextField.text else { return }
-        todoItem.set(title: title)
+        todo.set(title: title)
         
-        // TodoItem更新リクエスト送信
-        let request = TodoAppApi.updateTodoItem(todoItem: todoItem)
+        // Todo更新リクエスト送信
+        let request = TodoAppApi.updateTodo(todo: todo)
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):

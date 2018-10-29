@@ -1,12 +1,12 @@
 //
-//  TodoItem.swift
+//  Todo.swift
 //  TodoApp
 //
 //  Created by Shintaro Takemura on 2018/10/25.
 //  Copyright © 2018 Shintaro Takemura. All rights reserved.
 //
 
-final class TodoItem: Codable {
+final class Todo: Codable {
     private(set) var id: Int?
     private(set) var title: String
     private(set) var isDone = false

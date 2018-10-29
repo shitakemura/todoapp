@@ -1,5 +1,5 @@
 //
-//  AddTodoItemViewController.swift
+//  AddTodoViewController.swift
 //  TodoApp
 //
 //  Created by Shintaro Takemura on 2018/10/24.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-final class AddTodoItemViewController: UIViewController {
+final class AddTodoViewController: UIViewController {
     @IBOutlet private weak var titleTextField: UITextField!
     @IBOutlet private weak var closeButton: UIButton!
-    @IBOutlet private weak var addTodoItemButton: UIButton!
+    @IBOutlet private weak var addTodoButton: UIButton!
     
     private let apiClient: TodoAppApiClient
 
@@ -31,29 +31,29 @@ final class AddTodoItemViewController: UIViewController {
 }
 
 // MARK: - Private method
-extension AddTodoItemViewController {
+extension AddTodoViewController {
     private func setupButton() {
         closeButton.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
-        addTodoItemButton.addTarget(self, action: #selector(didTapAddItem), for: .touchUpInside)
+        addTodoButton.addTarget(self, action: #selector(didTapAddTodo), for: .touchUpInside)
     }
 }
 
 // MARK: - Action method
-extension AddTodoItemViewController {
+extension AddTodoViewController {
     @objc private func didTapClose(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc private func didTapAddItem(_ sender: UIButton) {
+    @objc private func didTapAddTodo(_ sender: UIButton) {
         guard let title = titleTextField.text else { return }
-        let todoItem = TodoItem(title: title)
+        let todo = Todo(title: title)
         
-        // TodoItem追加リクエスト送信
-        let request = TodoAppApi.addTodoItem(todoItem: todoItem)
+        // Todo追加リクエスト送信
+        let request = TodoAppApi.addTodo(todo: todo)
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
-                print("TodoItem追加成功 response: \(response)")
+                print("Todo追加成功 response: \(response)")
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }

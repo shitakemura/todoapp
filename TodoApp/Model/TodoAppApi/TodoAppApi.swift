@@ -10,8 +10,8 @@ import Foundation
 
 final class TodoAppApi {
     // Todo一覧取得
-    struct fetchTodoItems: TodoAppApiRequest {
-        typealias Response = [TodoItem]
+    struct fetchTodos: TodoAppApiRequest {
+        typealias Response = [Todo]
 
         var method: HTTPMethod {
             return .get
@@ -31,9 +31,9 @@ final class TodoAppApi {
     }
     
     // Todo追加
-    struct addTodoItem: TodoAppApiRequest {
-        typealias Response = TodoItem
-        let todoItem: TodoItem
+    struct addTodo: TodoAppApiRequest {
+        typealias Response = Todo
+        let todo: Todo
         
         var method: HTTPMethod {
             return .post
@@ -48,21 +48,21 @@ final class TodoAppApi {
         }
         
         var requestBody: Data? {
-            return try? JSONEncoder().encode(todoItem)
+            return try? JSONEncoder().encode(todo)
         }
     }
     
     // Todo更新
-    struct updateTodoItem: TodoAppApiRequest {
-        typealias Response = TodoItem
-        let todoItem: TodoItem
+    struct updateTodo: TodoAppApiRequest {
+        typealias Response = Todo
+        let todo: Todo
         
         var method: HTTPMethod {
             return .put
         }
 
         var path: String {
-            guard let id = todoItem.id else { return "" }
+            guard let id = todo.id else { return "" }
             return "/\(id)"
         }
         
@@ -71,22 +71,22 @@ final class TodoAppApi {
         }
         
         var requestBody: Data? {
-            return try? JSONEncoder().encode(todoItem)
+            return try? JSONEncoder().encode(todo)
 
         }
     }
     
     // Todo削除
-    struct deleteTodoItem: TodoAppApiRequest {
+    struct deleteTodo: TodoAppApiRequest {
         typealias Response = EmptyData
-        let todoItem: TodoItem
+        let todo: Todo
 
         var method: HTTPMethod {
             return .delete
         }
         
         var path: String {
-            guard let id = todoItem.id else { return "" }
+            guard let id = todo.id else { return "" }
             return "/\(id)"
         }
         
@@ -100,7 +100,7 @@ final class TodoAppApi {
     }
     
     // Todo全削除
-    struct clearTodoItems: TodoAppApiRequest {
+    struct clearTodos: TodoAppApiRequest {
         typealias Response = EmptyData
         
         var method: HTTPMethod {
