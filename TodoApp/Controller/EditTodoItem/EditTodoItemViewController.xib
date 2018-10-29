@@ -28,22 +28,22 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="DhF-5R-NiX"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                     <state key="normal" title="更新する">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jdC-CZ-0af">
-                    <rect key="frame" x="60" y="140" width="255" height="30"/>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jdC-CZ-0af">
+                    <rect key="frame" x="40" y="140" width="295" height="30"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Todo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOt-wS-uLy">
-                            <rect key="frame" x="0.0" y="0.0" width="51" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タスク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOt-wS-uLy">
+                            <rect key="frame" x="0.0" y="0.0" width="73" height="30"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3dl-Wr-giI">
-                            <rect key="frame" x="71" y="0.0" width="184" height="30"/>
+                            <rect key="frame" x="83" y="0.0" width="212" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -53,8 +53,8 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="jdC-CZ-0af" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="DU4-WL-0vQ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jdC-CZ-0af" secondAttribute="trailing" constant="60" id="NwK-yc-egE"/>
+                <constraint firstItem="jdC-CZ-0af" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="DU4-WL-0vQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jdC-CZ-0af" secondAttribute="trailing" constant="40" id="NwK-yc-egE"/>
                 <constraint firstItem="Kqw-8s-AaR" firstAttribute="top" secondItem="jdC-CZ-0af" secondAttribute="bottom" constant="100" id="RNi-GV-Rbz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Kqw-8s-AaR" secondAttribute="trailing" constant="60" id="lC6-uB-qqH"/>
                 <constraint firstItem="Kqw-8s-AaR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="rGR-d9-aX6"/>

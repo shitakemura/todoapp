@@ -59,7 +59,7 @@ extension TodoItemListViewController {
     
     private func setupButton() {
         addTodoButton.layer.borderWidth = 1.0
-        addTodoButton.layer.borderColor = UIColor.black.cgColor
+        addTodoButton.layer.borderColor = UIColor.blue.cgColor
         addTodoButton.layer.masksToBounds = true
         addTodoButton.layer.cornerRadius = addTodoButton.frame.width * 0.5
         addTodoButton.addTarget(self, action: #selector(didTapAddTodo), for: .touchUpInside)

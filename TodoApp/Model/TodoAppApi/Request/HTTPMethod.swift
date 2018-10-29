@@ -6,8 +6,6 @@
 //  Copyright © 2018 Shintaro Takemura. All rights reserved.
 //
 
-import Foundation
-
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
