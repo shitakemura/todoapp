@@ -21,6 +21,7 @@
 		180FAC012185919000D24037 /* EmptyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FAC002185919000D24037 /* EmptyData.swift */; };
 		180FAC032185A2FB00D24037 /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FAC022185A2FB00D24037 /* UIAlertControllerExtensions.swift */; };
 		181ABB5E2181E74B0048001C /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ABB5D2181E74B0048001C /* Todo.swift */; };
+		185FEE4F2186C18C00350666 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FEE4E2186C18C00350666 /* SVProgressHUD.framework */; };
 		188731DC2180A9CA00E97955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188731DB2180A9CA00E97955 /* AppDelegate.swift */; };
 		188731E32180A9CB00E97955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188731E22180A9CB00E97955 /* Assets.xcassets */; };
 		188731E62180A9CB00E97955 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188731E42180A9CB00E97955 /* LaunchScreen.storyboard */; };
@@ -69,6 +70,7 @@
 		180FAC002185919000D24037 /* EmptyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyData.swift; sourceTree = "<group>"; };
 		180FAC022185A2FB00D24037 /* UIAlertControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtensions.swift; sourceTree = "<group>"; };
 		181ABB5D2181E74B0048001C /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		185FEE4E2186C18C00350666 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		188731D82180A9CA00E97955 /* TodoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188731DB2180A9CA00E97955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		188731E22180A9CB00E97955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185FEE4F2186C18C00350666 /* SVProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +187,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		185FEE4D2186C18C00350666 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				185FEE4E2186C18C00350666 /* SVProgressHUD.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		188731CF2180A9CA00E97955 = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +202,7 @@
 				188731EF2180A9CC00E97955 /* TodoAppTests */,
 				188731FA2180A9CC00E97955 /* TodoAppUITests */,
 				188731D92180A9CA00E97955 /* Products */,
+				185FEE4D2186C18C00350666 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +306,7 @@
 				188731D42180A9CA00E97955 /* Sources */,
 				188731D52180A9CA00E97955 /* Frameworks */,
 				188731D62180A9CA00E97955 /* Resources */,
+				185FEE502186C19500350666 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -414,6 +427,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		185FEE502186C19500350666 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+			);
+			name = Carthage;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		188731D42180A9CA00E97955 /* Sources */ = {
@@ -606,6 +641,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E4K33R9CD3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TodoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -625,6 +664,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E4K33R9CD3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = TodoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

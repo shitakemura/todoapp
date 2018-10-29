@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 final class TodoAppApiClient {
     private let session: URLSession = {
@@ -20,6 +21,9 @@ final class TodoAppApiClient {
         completion: @escaping (Result<Request.Response, TodoAppApiClientError>) -> Void) {
         
         let urlRequest = request.buildURLRequest()
+        
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
         
         let task = session.dataTask(with: urlRequest) { data, response, error in
             switch (data, response, error) {
@@ -39,6 +43,8 @@ final class TodoAppApiClient {
             default:
                 fatalError("invalid response combination \(String(describing: data)), \(String(describing: response)), \(String(describing: error)).")
             }
+            
+            SVProgressHUD.dismiss()
         }
         task.resume()
     }
