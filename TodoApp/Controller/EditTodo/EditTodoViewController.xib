@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTodoViewController" customModule="TodoApp" customModuleProvider="target">
             <connections>
-                <outlet property="titleTextField" destination="3dl-Wr-giI" id="B0a-39-Ldu"/>
+                <outlet property="taskNameTextField" destination="3dl-Wr-giI" id="B0a-39-Ldu"/>
                 <outlet property="updateTodoButton" destination="Kqw-8s-AaR" id="g1b-mB-03T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

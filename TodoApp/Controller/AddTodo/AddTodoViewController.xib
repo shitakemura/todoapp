@@ -14,7 +14,7 @@
             <connections>
                 <outlet property="addTodoButton" destination="aym-yc-2lb" id="p4J-GU-NqI"/>
                 <outlet property="closeButton" destination="g4i-af-Jh5" id="XFO-ow-PVf"/>
-                <outlet property="titleTextField" destination="oKn-Kd-NFB" id="SYR-Qr-k5s"/>
+                <outlet property="taskNameTextField" destination="oKn-Kd-NFB" id="SYR-Qr-k5s"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

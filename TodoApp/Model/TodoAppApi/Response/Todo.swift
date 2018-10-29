@@ -8,15 +8,15 @@
 
 final class Todo: Codable {
     private(set) var id: Int?
-    private(set) var title: String
+    private(set) var taskName: String
     private(set) var isDone = false
     
-    init(title: String) {
-        self.title = title
+    init(taskName: String) {
+        self.taskName = taskName
     }
     
-    func set(title: String) {
-        self.title = title
+    func set(taskName: String) {
+        self.taskName = taskName
     }
     
     func set(isDone: Bool) {

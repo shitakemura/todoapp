@@ -9,7 +9,7 @@
 import UIKit
 
 final class AddTodoViewController: UIViewController {
-    @IBOutlet private weak var titleTextField: UITextField!
+    @IBOutlet private weak var taskNameTextField: UITextField!
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var addTodoButton: UIButton!
     
@@ -45,8 +45,8 @@ extension AddTodoViewController {
     }
     
     @objc private func didTapAddTodo(_ sender: UIButton) {
-        guard let title = titleTextField.text else { return }
-        let todo = Todo(title: title)
+        guard let taskName = taskNameTextField.text else { return }
+        let todo = Todo(taskName: taskName)
         
         // Todo追加リクエスト送信
         let request = TodoAppApi.addTodo(todo: todo)

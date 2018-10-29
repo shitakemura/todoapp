@@ -47,7 +47,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="checkmarkView" destination="6Th-84-1TK" id="O09-c9-re4"/>
-                <outlet property="titleLabel" destination="GrQ-Xy-rPX" id="hj7-Kd-FY6"/>
+                <outlet property="taskNameLabel" destination="GrQ-Xy-rPX" id="hj7-Kd-FY6"/>
             </connections>
             <point key="canvasLocation" x="112.8" y="80.959520239880064"/>
         </tableViewCell>

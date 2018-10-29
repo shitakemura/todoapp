@@ -14,7 +14,7 @@ protocol TodoTableViewCellDelegate: class {
 
 final class TodoTableViewCell: UITableViewCell {
     @IBOutlet private weak var checkmarkView: CheckmarkView!
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var taskNameLabel: UILabel!
     
     weak var delegate: TodoTableViewCellDelegate?
     private(set) var todo: Todo?
@@ -33,7 +33,7 @@ final class TodoTableViewCell: UITableViewCell {
 extension TodoTableViewCell {
     func bind(todo: Todo) {
         self.todo = todo
-        titleLabel.text = todo.title
+        taskNameLabel.text = todo.taskName
         checkmarkView.set(checkmark: todo.isDone)
         checkmarkView.delegate = self
     }

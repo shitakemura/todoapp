@@ -9,7 +9,7 @@
 import UIKit
 
 final class EditTodoViewController: UIViewController {
-    @IBOutlet private weak var titleTextField: UITextField!
+    @IBOutlet private weak var taskNameTextField: UITextField!
     @IBOutlet private weak var updateTodoButton: UIButton!
     
     private let apiClient: TodoAppApiClient
@@ -29,7 +29,7 @@ final class EditTodoViewController: UIViewController {
         super.viewDidLoad()
         setupNavigation()
         setupButton()
-        set(titleText: todo.title)
+        set(taskName: todo.taskName)
     }
 }
 
@@ -39,8 +39,8 @@ extension EditTodoViewController {
         title = "EditTodo"
     }
     
-    private func set(titleText: String) {
-        titleTextField.text = titleText
+    private func set(taskName: String) {
+        taskNameTextField.text = taskName
     }
     
     private func setupButton() {
@@ -51,8 +51,8 @@ extension EditTodoViewController {
 // MARK: - Action method
 extension EditTodoViewController {
     @objc private func didTapUpdateTodo(_ sender: UIButton) {
-        guard let title = titleTextField.text else { return }
-        todo.set(title: title)
+        guard let taskName = taskNameTextField.text else { return }
+        todo.set(taskName: taskName)
         
         // Todo更新リクエスト送信
         let request = TodoAppApi.updateTodo(todo: todo)
