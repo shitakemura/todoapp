@@ -36,7 +36,7 @@ final class EditTodoViewController: UIViewController {
 // MARK: - Private method
 extension EditTodoViewController {
     private func setupNavigation() {
-        title = "EditTodo"
+        title = "Todo編集"
     }
     
     private func set(taskName: String) {

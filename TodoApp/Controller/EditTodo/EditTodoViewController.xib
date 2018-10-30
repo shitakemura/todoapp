@@ -29,7 +29,7 @@
                         <constraint firstAttribute="height" constant="50" id="DhF-5R-NiX"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                    <state key="normal" title="更新する">
+                    <state key="normal" title="更新">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
