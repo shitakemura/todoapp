@@ -21,10 +21,6 @@ final class TodoAppApi {
             return ""
         }
         
-        var hasRequestBody: Bool {
-            return false
-        }
-        
         var requestBody: Data? {
             return nil
         }
@@ -41,10 +37,6 @@ final class TodoAppApi {
         
         var path: String {
             return ""
-        }
-        
-        var hasRequestBody: Bool {
-            return true
         }
         
         var requestBody: Data? {
@@ -66,13 +58,8 @@ final class TodoAppApi {
             return "/\(id)"
         }
         
-        var hasRequestBody: Bool {
-            return true
-        }
-        
         var requestBody: Data? {
             return try? JSONEncoder().encode(todo)
-
         }
     }
     
@@ -90,10 +77,6 @@ final class TodoAppApi {
             return "/\(id)"
         }
         
-        var hasRequestBody: Bool {
-            return false
-        }
-        
         var requestBody: Data? {
             return nil
         }
@@ -109,10 +92,6 @@ final class TodoAppApi {
         
         var path: String {
             return ""
-        }
-        
-        var hasRequestBody: Bool {
-            return false
         }
         
         var requestBody: Data? {

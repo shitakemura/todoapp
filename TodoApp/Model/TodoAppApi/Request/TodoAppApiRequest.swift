@@ -13,8 +13,6 @@ protocol TodoAppApiRequest {
     var baseURL: URL { get }
     var path: String { get }
     var method: HTTPMethod { get }
-    
-    var hasRequestBody: Bool { get }
     var requestBody: Data? { get }
 }
 
@@ -35,11 +33,8 @@ extension TodoAppApiRequest {
             var urlRequest = URLRequest(url: url)
             urlRequest.url = components?.url
             urlRequest.httpMethod = method.rawValue
-            
-            if hasRequestBody {
-                urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                urlRequest.httpBody = requestBody
-            }
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = requestBody
             return urlRequest
         }()
         return urlRequest
