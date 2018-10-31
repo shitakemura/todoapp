@@ -19,9 +19,9 @@ protocol TodoAppApiRequest {
 extension TodoAppApiRequest {
     var baseURL: URL {
         #if DEBUG
-        return URL(string: "http://localhost:8080/todos")!
+        return URL(string: "http://localhost:8080")!
         #else
-        return URL(string: "https://xxxxxxxx.xxxxx.cloud/todos")!
+        return URL(string: "https://xxxxxxxx.xxxxx.cloud")!
         #endif
     }
     

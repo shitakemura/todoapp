@@ -18,7 +18,7 @@ final class TodoAppApi {
         }
         
         var path: String {
-            return ""
+            return "/todos"
         }
         
         var requestBody: Data? {
@@ -36,7 +36,7 @@ final class TodoAppApi {
         }
         
         var path: String {
-            return ""
+            return "/todos"
         }
         
         var requestBody: Data? {
@@ -55,7 +55,7 @@ final class TodoAppApi {
 
         var path: String {
             guard let id = todo.id else { return "" }
-            return "/\(id)"
+            return "/todos/\(id)"
         }
         
         var requestBody: Data? {
@@ -74,7 +74,7 @@ final class TodoAppApi {
         
         var path: String {
             guard let id = todo.id else { return "" }
-            return "/\(id)"
+            return "/todos/\(id)"
         }
         
         var requestBody: Data? {
@@ -91,7 +91,7 @@ final class TodoAppApi {
         }
         
         var path: String {
-            return ""
+            return "/todos"
         }
         
         var requestBody: Data? {
