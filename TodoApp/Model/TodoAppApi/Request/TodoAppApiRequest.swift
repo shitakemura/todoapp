@@ -48,7 +48,8 @@ extension TodoAppApiRequest {
             if data.isEmpty { return EmptyData() as! Self.Response }
             return try decoder.decode(Response.self, from: data)
         } else {
-            throw try decoder.decode(TodoAppApiError.self, from: data)
+            let message = String(data: data, encoding: .utf8) ?? ""
+            throw TodoAppApiError(message: message)
         }
     }
 }

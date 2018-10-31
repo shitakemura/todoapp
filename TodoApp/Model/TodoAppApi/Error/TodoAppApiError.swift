@@ -6,13 +6,6 @@
 //  Copyright © 2018 Shintaro Takemura. All rights reserved.
 //
 
-struct TodoAppApiError : Decodable, Error {
-    struct FieldError : Decodable {
-        let resource: String
-        let field: String
-        let code: String
-    }
-    
+struct TodoAppApiError: Error {
     let message: String
-    let fieldErrors: [FieldError]
 }

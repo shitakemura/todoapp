@@ -17,8 +17,8 @@ enum TodoAppApiClientError : Error {
             return "通信エラーが発生しました。"
         case .responseParseError:
             return "レスポンスデータが不正です"
-        case .apiError:
-            return "エラーレスポンスを受け取りました"
+        case .apiError(let apiError):
+            return "サーバエラーが発生しました\n(\(apiError.message))"
         }
     }
 }
