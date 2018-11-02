@@ -14,7 +14,7 @@ protocol TodoTableViewCellDelegate: class {
 
 final class TodoTableViewCell: UITableViewCell {
     @IBOutlet private weak var checkmarkView: CheckmarkView!
-    @IBOutlet private weak var taskNameLabel: UILabel!
+    @IBOutlet weak var taskNameLabel: UILabel!
     
     weak var delegate: TodoTableViewCellDelegate?
     private(set) var todo: Todo?

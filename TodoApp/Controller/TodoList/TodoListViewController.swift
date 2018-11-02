@@ -9,7 +9,7 @@
 import UIKit
 
 final class TodoListViewController: UIViewController {
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var addTodoButton: UIButton!
     
     private let apiClient: TodoAppApiClient
