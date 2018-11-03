@@ -118,12 +118,9 @@ extension TodoListViewController {
             }
         }
 
-        let alertController: UIAlertController = {
-            let alertController = UIAlertController(title: "全てのTodoを削除します", message: "よろしいですか？", preferredStyle: .alert)
-                .addAction(title: "OK", style: .default, handler: clearTodos)
-                .addAction(title: "キャンセル", style: .cancel, handler: nil)
-            return alertController
-        }()
+        let alertController = UIAlertController(title: "全てのTodoを削除します", message: "よろしいですか？", preferredStyle: .alert)
+            .addAction(title: "OK", style: .default, handler: clearTodos)
+            .addAction(title: "キャンセル", style: .cancel, handler: nil)
         present(alertController, animated: true, completion: nil)
     }
 }
