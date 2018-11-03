@@ -42,14 +42,26 @@ extension TodoAppApiRequest {
     
     func response(from data: Data, urlResponse: URLResponse) throws -> Response {
         let decoder = JSONDecoder()
-        if case (200..<300)? = (urlResponse as? HTTPURLResponse)?.statusCode {
+        let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode
+        print("statusCode: \(String(describing: statusCode))")
+        
+        if case (200..<300)? = statusCode {
             // TODO: リファクタ検討
             // DELETEリクエストは、戻りJSONデータが空のため、EmptyDataオブジェクトを返す
             if data.isEmpty { return EmptyData() as! Self.Response }
             return try decoder.decode(Response.self, from: data)
+            
         } else {
-            let message = String(data: data, encoding: .utf8) ?? ""
-            throw TodoAppApiError(message: message)
+            if let reason = String(data: data, encoding: .utf8) {
+                // String文字列で返却された場合
+                // ex) 404エラー: "Not Found"
+                throw TodoAppApiError(error: true, reason: reason)
+            } else {
+                // JSON文字列で返却された場合
+                // ex) 400エラー: { "error": true, "reason": "Could not convert parameter todo1 to type `Int`." }
+                //     500エラー: { "error": true, "reason": "The given data was not valid JSON." }
+                throw try decoder.decode(TodoAppApiError.self, from: data)
+            }
         }
     }
 }

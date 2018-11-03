@@ -6,6 +6,7 @@
 //  Copyright © 2018 Shintaro Takemura. All rights reserved.
 //
 
-struct TodoAppApiError: Error {
-    let message: String
+struct TodoAppApiError: Decodable, Error {
+    let error: Bool
+    let reason: String
 }
