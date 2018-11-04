@@ -24,21 +24,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uib-ZI-h60">
-                    <rect key="frame" x="40" y="140" width="295" height="30"/>
+                    <rect key="frame" x="62.5" y="140" width="250" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タスク" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9SH-C0-4Vm">
-                            <rect key="frame" x="0.0" y="0.0" width="73" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="73" height="40"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oKn-Kd-NFB">
-                            <rect key="frame" x="83" y="0.0" width="212" height="30"/>
+                            <rect key="frame" x="83" y="0.0" width="167" height="40"/>
                             <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="3Fd-X8-bqN"/>
+                    </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4i-af-Jh5">
                     <rect key="frame" x="25" y="30" width="56" height="34"/>
@@ -46,10 +49,14 @@
                     <state key="normal" title="閉じる"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aym-yc-2lb">
-                    <rect key="frame" x="60" y="270" width="255" height="50"/>
+                    <rect key="frame" x="62.5" y="240" width="250" height="50"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Ejs-hr-aQ7"/>
+                        <constraint firstAttribute="width" constant="250" id="Zxc-38-yVY">
+                            <variation key="heightClass=regular-widthClass=compact" constant="250"/>
+                            <variation key="heightClass=regular-widthClass=regular" constant="400"/>
+                        </constraint>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                     <state key="normal" title="登録">
@@ -59,14 +66,16 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="aym-yc-2lb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="60" id="2KL-ix-jHe"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uib-ZI-h60" secondAttribute="trailing" constant="40" id="QFy-s0-T0D"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aym-yc-2lb" secondAttribute="trailing" constant="60" id="Rsa-EE-2iB"/>
+                <constraint firstItem="aym-yc-2lb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OCk-bQ-nJ0"/>
                 <constraint firstItem="g4i-af-Jh5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="aZh-Wg-elA"/>
-                <constraint firstItem="aym-yc-2lb" firstAttribute="top" secondItem="uib-ZI-h60" secondAttribute="bottom" constant="100" id="lrL-EH-JAM"/>
-                <constraint firstItem="uib-ZI-h60" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="p28-yd-Oho"/>
+                <constraint firstItem="aym-yc-2lb" firstAttribute="top" secondItem="uib-ZI-h60" secondAttribute="bottom" constant="60" id="lrL-EH-JAM"/>
+                <constraint firstItem="uib-ZI-h60" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="p28-yd-Oho">
+                    <variation key="heightClass=regular-widthClass=compact" constant="120"/>
+                    <variation key="heightClass=regular-widthClass=regular" constant="200"/>
+                </constraint>
+                <constraint firstItem="uib-ZI-h60" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="p2M-2T-PdF"/>
                 <constraint firstItem="g4i-af-Jh5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="pxM-XM-Gri"/>
-                <constraint firstItem="uib-ZI-h60" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="xAg-Ll-f4R"/>
+                <constraint firstItem="aym-yc-2lb" firstAttribute="width" secondItem="uib-ZI-h60" secondAttribute="width" id="xfe-jg-wmK"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
