@@ -55,7 +55,7 @@ extension EditTodoViewController {
         todo.set(taskName: taskName)
         
         // Todo更新リクエスト送信
-        let request = TodoAppApi.updateTodo(todo: todo)
+        let request = TodoAppApi.UpdateTodo(todo: todo)
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):

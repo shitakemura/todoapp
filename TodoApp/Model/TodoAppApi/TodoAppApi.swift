@@ -10,7 +10,7 @@ import Foundation
 
 final class TodoAppApi {
     // Todo一覧取得
-    struct fetchTodos: TodoAppApiRequest {
+    struct FetchTodos: TodoAppApiRequest {
         typealias Response = [Todo]
 
         var method: HTTPMethod {
@@ -27,7 +27,7 @@ final class TodoAppApi {
     }
     
     // Todo追加
-    struct addTodo: TodoAppApiRequest {
+    struct AddTodo: TodoAppApiRequest {
         typealias Response = Todo
         let todo: Todo
         
@@ -45,7 +45,7 @@ final class TodoAppApi {
     }
     
     // Todo更新
-    struct updateTodo: TodoAppApiRequest {
+    struct UpdateTodo: TodoAppApiRequest {
         typealias Response = Todo
         let todo: Todo
         
@@ -64,7 +64,7 @@ final class TodoAppApi {
     }
     
     // Todo削除
-    struct deleteTodo: TodoAppApiRequest {
+    struct DeleteTodo: TodoAppApiRequest {
         typealias Response = EmptyData
         let todo: Todo
 
@@ -83,7 +83,7 @@ final class TodoAppApi {
     }
     
     // Todo全削除
-    struct clearTodos: TodoAppApiRequest {
+    struct ClearTodos: TodoAppApiRequest {
         typealias Response = EmptyData
         
         var method: HTTPMethod {

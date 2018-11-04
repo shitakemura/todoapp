@@ -67,7 +67,7 @@ extension TodoListViewController {
     
     private func fetchTodos() {
         // 全Todo取得リクエスト送信
-        let request = TodoAppApi.fetchTodos()
+        let request = TodoAppApi.FetchTodos()
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
@@ -102,7 +102,7 @@ extension TodoListViewController {
         
         // Todo削除確認アラートOK押下時: 全Todo削除リクエスト送信
         let clearTodos: ((UIAlertAction) -> Void)? = { _ in
-            let request = TodoAppApi.clearTodos()
+            let request = TodoAppApi.ClearTodos()
             self.apiClient.send(request: request) { result in
                 switch result {
                 case let .success(response):
@@ -157,7 +157,7 @@ extension TodoListViewController: UITableViewDataSource {
         if editingStyle != .delete { return }
         
         // 編集モードで削除ボタン押下時: Todo削除リクエスト送信
-        let request = TodoAppApi.deleteTodo(todo: todos[indexPath.row])
+        let request = TodoAppApi.DeleteTodo(todo: todos[indexPath.row])
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
@@ -178,7 +178,7 @@ extension TodoListViewController: UITableViewDataSource {
 extension TodoListViewController: TodoTableViewCellDelegate {
     // TableViewCell.todo変更時: Todo更新リクエスト送信
     func todoTableViewCell(_ todoTableViewCell: TodoTableViewCell, didChangeTodo: Todo) {
-        let request = TodoAppApi.updateTodo(todo: didChangeTodo)
+        let request = TodoAppApi.UpdateTodo(todo: didChangeTodo)
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):

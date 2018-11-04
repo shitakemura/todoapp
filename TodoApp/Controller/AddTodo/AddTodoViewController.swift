@@ -49,7 +49,7 @@ extension AddTodoViewController {
         let todo = Todo(taskName: taskName)
         
         // Todo追加リクエスト送信
-        let request = TodoAppApi.addTodo(todo: todo)
+        let request = TodoAppApi.AddTodo(todo: todo)
         apiClient.send(request: request) { result in
             switch result {
             case let .success(response):
