@@ -128,8 +128,8 @@ extension TodoListViewController {
 // MARK: - UITableViewDelegate
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let todo = todos[indexPath.row]
-        let editTodoViewController = EditTodoViewController(apiClient: apiClient, todo: todo)
+        let dependency = (apiClient: apiClient, todo: todos[indexPath.row])
+        let editTodoViewController = EditTodoViewController(dependency: dependency)
         navigationController?.pushViewController(editTodoViewController, animated: true)
     }
 }

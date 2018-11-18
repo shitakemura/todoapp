@@ -12,12 +12,11 @@ final class EditTodoViewController: UIViewController {
     @IBOutlet private weak var taskNameTextField: UITextField!
     @IBOutlet private weak var updateTodoButton: UIButton!
     
-    private let apiClient: TodoAppApiClient
-    private let todo: Todo
+    typealias Dependency = (TodoAppApiClient, Todo)
+    let (apiClient, todo): Dependency
     
-    init(apiClient: TodoAppApiClient, todo: Todo) {
-        self.apiClient = apiClient
-        self.todo = todo
+    init(dependency: Dependency) {
+        (apiClient, todo) = dependency
         super.init(nibName: nil, bundle: nil)
     }
     
